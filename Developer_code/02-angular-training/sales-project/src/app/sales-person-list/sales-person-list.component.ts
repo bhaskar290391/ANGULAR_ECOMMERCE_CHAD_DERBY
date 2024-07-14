@@ -14,6 +14,7 @@ export class SalesPersonListComponent implements OnInit {
     new SalesPerson("kanishk","mudaliyar","kanishk@gmail.com",7000),
     new SalesPerson("sammy","mudaliyar","sammy@gmail.com",4000),
   ]
+data: TemplateRef<NgIfContext<boolean>>|null;
   constructor() { }
 
   ngOnInit(): void {
