@@ -1,0 +1,16 @@
+<div class="detail-section">
+    <div class="container-fluid">
+
+        <img src="{{product.imageUrl}}" class="detail-img">
+        <h3>{{product.name}}</h3>
+        <div class="price">{{product.unitPrice|currency:'USD'}}</div>
+        <a href="#" class="primary-btn">Add To Cart</a>
+
+        <hr>
+        <h1>Project Description</h1>
+        <p>{{product.description}}</p>
+
+
+        <a routerLink="/product">Back To product page</a>
+    </div>
+</div>
