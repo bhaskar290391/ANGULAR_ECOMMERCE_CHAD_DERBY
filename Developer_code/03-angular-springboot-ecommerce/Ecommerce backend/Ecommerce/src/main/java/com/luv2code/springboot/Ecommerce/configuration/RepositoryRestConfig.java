@@ -1,7 +1,9 @@
 package com.luv2code.springboot.Ecommerce.configuration;
 
+import com.luv2code.springboot.Ecommerce.entity.Country;
 import com.luv2code.springboot.Ecommerce.entity.Product;
 import com.luv2code.springboot.Ecommerce.entity.ProductCategory;
+import com.luv2code.springboot.Ecommerce.entity.State;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +28,19 @@ public class RepositoryRestConfig implements RepositoryRestConfigurer {
 
         HttpMethod[] unsupported={HttpMethod.DELETE,HttpMethod.POST,HttpMethod.PUT};
 
+        readOnlyApiForEntity(config,Product.class, unsupported);
+        readOnlyApiForEntity(config, ProductCategory.class, unsupported);
+        readOnlyApiForEntity(config, Country.class, unsupported);
+        readOnlyApiForEntity(config, State.class, unsupported);
+
+        exposeIds(config);
+    }
+
+    private static void readOnlyApiForEntity(RepositoryRestConfiguration config,Class thClass, HttpMethod[] unsupported) {
         config.getExposureConfiguration()
-                .forDomainType(Product.class)
+                .forDomainType(thClass)
                 .withItemExposure((metdata, httpMethods) -> httpMethods.disable(unsupported))
                 .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(unsupported));
-
-        config.getExposureConfiguration()
-                .forDomainType(ProductCategory.class)
-                .withItemExposure((metdata, httpMethods) -> httpMethods.disable(unsupported))
-                .withCollectionExposure((metdata, httpMethods) -> httpMethods.disable(unsupported));
-
-
-            exposeIds(config);
     }
 
     private void exposeIds(RepositoryRestConfiguration config) {
