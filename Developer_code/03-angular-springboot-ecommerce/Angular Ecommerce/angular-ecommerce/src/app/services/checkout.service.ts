@@ -3,11 +3,13 @@ import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { Country } from '../commons/country';
 import { State } from '../commons/state';
+import { Purchase } from '../commons/purchase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
+
 
   constructor(private httpClient: HttpClient) { }
 
@@ -48,6 +50,13 @@ export class CheckoutService {
     return this.httpClient.get<GetStateResponse>(this.stateUrl + "/search/findByCountryCode?code=" + code).pipe(
       map(response => response._embedded.states)
     )
+  }
+
+
+  placeOrder(purchase: Purchase) :Observable<any>{
+    const purchaseUrl="http://localhost:8080/api/checkout/purchase";
+
+    return this.httpClient.post<any>(purchaseUrl,purchase);
   }
 }
 
