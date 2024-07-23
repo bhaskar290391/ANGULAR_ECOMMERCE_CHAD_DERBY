@@ -26,7 +26,7 @@ public class RepositoryRestConfig implements RepositoryRestConfigurer {
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
 
-        HttpMethod[] unsupported={HttpMethod.DELETE,HttpMethod.POST,HttpMethod.PUT};
+        HttpMethod[] unsupported={HttpMethod.DELETE,HttpMethod.POST,HttpMethod.PUT,HttpMethod.PATCH};
 
         readOnlyApiForEntity(config,Product.class, unsupported);
         readOnlyApiForEntity(config, ProductCategory.class, unsupported);
@@ -34,6 +34,8 @@ public class RepositoryRestConfig implements RepositoryRestConfigurer {
         readOnlyApiForEntity(config, State.class, unsupported);
 
         exposeIds(config);
+
+        cors.addMapping("/api/**").allowedOrigins("http://localhost:4200");
     }
 
     private static void readOnlyApiForEntity(RepositoryRestConfiguration config,Class thClass, HttpMethod[] unsupported) {
