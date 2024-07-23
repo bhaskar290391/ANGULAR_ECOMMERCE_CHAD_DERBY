@@ -31,6 +31,10 @@ function sendToLoginPage(oktaAuth:OktaAuth,injector:Injector){
   const router= injector.get(Router);
   router.navigate(['/login']);
 }
+
+export function getLocalStorage() {
+  return (typeof window !== "undefined") ? window.localStorage : null;
+}
 const routes:Routes=[
 
   
@@ -71,7 +75,8 @@ const routes:Routes=[
     ReactiveFormsModule,
     OktaAuthModule
   ],
-  providers: [ProductService,{provide:OKTA_CONFIG,useValue:{oktaAuth}}],
+  providers: [ProductService,{provide:OKTA_CONFIG,useValue:{oktaAuth}},
+  { provide: 'LOCALSTORAGE', useFactory: getLocalStorage }],
 
   bootstrap: [AppComponent]
 })

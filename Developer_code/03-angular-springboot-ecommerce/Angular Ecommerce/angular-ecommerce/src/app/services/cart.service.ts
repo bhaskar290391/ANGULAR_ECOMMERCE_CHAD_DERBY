@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { CartItem } from '../commons/cart-item';
 import { BehaviorSubject, Subject } from 'rxjs';
 
@@ -12,7 +12,16 @@ export class CartService {
   totalPrice: Subject<number> = new BehaviorSubject<number>(0);
   totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
-  constructor() { }
+
+  constructor(@Inject('LOCALSTORAGE') private localStorage: any) { 
+
+    let data= JSON.parse(this.localStorage.getItem("cartItems")!);
+
+    if(data != null){
+      this.cartItems=data;
+      this.computeTotals();
+    }
+  }
 
   addToCart(cartItem: CartItem) {
     let existingCartItem: CartItem | undefined;
@@ -45,6 +54,12 @@ export class CartService {
 
     this.totalPrice.next(price);
     this.totalQuantity.next(qunatity);
+
+    this.persistCartItems();
+  }
+  persistCartItems() {
+
+    this.localStorage.setItem("cartItems",JSON.stringify(this.cartItems));
   }
 
 
