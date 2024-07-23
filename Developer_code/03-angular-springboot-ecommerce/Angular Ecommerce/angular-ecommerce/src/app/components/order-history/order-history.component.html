@@ -1,0 +1,30 @@
+<div class="main-content">
+    <div class="section-content section-content-p30">
+        <div class="container-fluid">
+                <div *ngIf="orderHistory.length >0 ">
+                     <table class="table table-bordered">
+                        <tr>
+                            <th>Order Tracking Number</th>
+                            <th>Total Price</th>
+                            <th>Total Quantity</th>
+                            <th>Date Created</th>
+                        </tr>
+
+                        <tr *ngFor="let history of orderHistory">
+                            <td>{{history.orderTrackingNumber}}</td>
+                            <td>{{history.totalPrice}}</td>
+                            <td>{{history.totalQuantity}}</td>
+                            <td>{{history.createdDate|date:'medium'}}</td>
+                        </tr>
+
+                        
+                     </table>
+                </div>
+
+                
+                <div *ngIf="orderHistory.length ==0 " class="alert alert-warning">
+                     No Order history is found
+                </div>
+        </div>
+    </div>
+</div>

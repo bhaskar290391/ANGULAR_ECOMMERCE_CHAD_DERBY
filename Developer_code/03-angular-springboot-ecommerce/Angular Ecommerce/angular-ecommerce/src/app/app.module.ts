@@ -22,6 +22,8 @@ import {OKTA_CONFIG,OktaCallbackComponent, OktaAuthModule, OktaAuthGuard} from '
 import {OktaAuth} from '@okta/okta-auth-js';
 import myAppConfig from './config/my-app-config';
 import { MembersComponent } from './components/members/members.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { OrderHistory } from './commons/order-history';
 
 const oktaConfig= myAppConfig.oidc;
 
@@ -37,8 +39,10 @@ export function getLocalStorage() {
 }
 const routes:Routes=[
 
-  
-  {path:"members",component:MembersComponent,canActivate:[OktaAuthGuard],data:{onAuthRequired:sendToLoginPage}},
+ 
+  {path:"orderHistory",component:OrderHistoryComponent}, 
+  // {path:"orderHistory",component:OrderHistoryComponent,canActivate:[OktaAuthGuard],data:{onAuthRequired:sendToLoginPage}},
+  // {path:"members",component:MembersComponent,canActivate:[OktaAuthGuard],data:{onAuthRequired:sendToLoginPage}},
   {path:"login/callback",component:OktaCallbackComponent},
   {path:"login",component:LoginComponent},
   {path:"checkout",component:CheckoutComponent},
@@ -65,7 +69,8 @@ const routes:Routes=[
     CheckoutComponent,
     LoginComponent,
     LoginStatusComponent,
-    MembersComponent
+    MembersComponent,
+    OrderHistoryComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

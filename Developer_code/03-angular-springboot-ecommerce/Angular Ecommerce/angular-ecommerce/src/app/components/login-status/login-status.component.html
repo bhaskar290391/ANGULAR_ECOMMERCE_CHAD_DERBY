@@ -3,10 +3,12 @@
         Welcome back {{this.userFullName}}
     </div>
 
-    <button *ngIf="!isAuthenticate" routerLink="/login" class="security-btn">Login</button>
+    <button *ngIf="!isAuthenticate" routerLink="/login" class="security-btn">Login </button>
 
-    <button *ngIf="isAuthenticate" (click)="logout()" class="security-btn">Logout</button>
+    <button *ngIf="isAuthenticate" (click)="logout()" class="security-btn">Logout </button>
 
     
-    <button *ngIf="!isAuthenticate" class="security-btn ml-2" routerLink="/members">Members</button>
+    <button *ngIf="!isAuthenticate" class="security-btn mr-2" routerLink="/members">Members</button>
+
+    <button *ngIf="!isAuthenticate" class="security-btn mr-2" routerLink="/orderHistory">My Orders</button>
 </div>

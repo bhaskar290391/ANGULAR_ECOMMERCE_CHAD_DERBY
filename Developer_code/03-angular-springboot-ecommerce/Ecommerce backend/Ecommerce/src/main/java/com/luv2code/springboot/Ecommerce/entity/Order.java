@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -34,6 +35,7 @@ public class Order {
     private int totalQuantity;
 
     @Column(name = "date_created")
+    @CreationTimestamp
     private Date createdDate;
 
     @Column(name = "last_updated")

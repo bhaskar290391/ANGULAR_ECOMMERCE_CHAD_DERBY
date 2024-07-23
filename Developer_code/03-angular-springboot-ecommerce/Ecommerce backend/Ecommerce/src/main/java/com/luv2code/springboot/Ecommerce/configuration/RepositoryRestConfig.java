@@ -1,9 +1,6 @@
 package com.luv2code.springboot.Ecommerce.configuration;
 
-import com.luv2code.springboot.Ecommerce.entity.Country;
-import com.luv2code.springboot.Ecommerce.entity.Product;
-import com.luv2code.springboot.Ecommerce.entity.ProductCategory;
-import com.luv2code.springboot.Ecommerce.entity.State;
+import com.luv2code.springboot.Ecommerce.entity.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.metamodel.EntityType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,7 @@ public class RepositoryRestConfig implements RepositoryRestConfigurer {
         readOnlyApiForEntity(config, ProductCategory.class, unsupported);
         readOnlyApiForEntity(config, Country.class, unsupported);
         readOnlyApiForEntity(config, State.class, unsupported);
+        readOnlyApiForEntity(config, Order.class, unsupported);
 
         exposeIds(config);
 
