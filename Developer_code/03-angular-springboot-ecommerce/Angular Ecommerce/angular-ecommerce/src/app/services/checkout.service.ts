@@ -4,6 +4,7 @@ import { map, Observable, of } from 'rxjs';
 import { Country } from '../commons/country';
 import { State } from '../commons/state';
 import { Purchase } from '../commons/purchase';
+import { environment } from 'src/environments/environment.qa';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,8 @@ export class CheckoutService {
 
   constructor(private httpClient: HttpClient) { }
 
-  countryUrl: string = "http://localhost:8080/api/countries";
-  stateUrl: string = "http://localhost:8080/api/states";
+  countryUrl: string = environment.baseUrl+"/api/countries";
+  stateUrl: string = environment.baseUrl+"/api/states";
 
 
   getExpirationMonth(startMonth: number): Observable<number[]> {
@@ -54,7 +55,7 @@ export class CheckoutService {
 
 
   placeOrder(purchase: Purchase) :Observable<any>{
-    const purchaseUrl="http://localhost:8080/api/checkout/purchase";
+    const purchaseUrl=environment.baseUrl+"/api/checkout/purchase";
 
     return this.httpClient.post<any>(purchaseUrl,purchase);
   }

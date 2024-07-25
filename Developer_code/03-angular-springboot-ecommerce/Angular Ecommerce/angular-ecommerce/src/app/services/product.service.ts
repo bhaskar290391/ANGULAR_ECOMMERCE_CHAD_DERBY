@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Product } from '../commons/product';
 import { ProductCategory } from '../commons/product-category';
+import { environment } from 'src/environments/environment.qa';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,8 @@ export class ProductService {
 
   
 
-  productBaseUrl = "http://localhost:8080/api/products";
-  productCategoryBaseUrl = "http://localhost:8080/api/productCategories"
+  productBaseUrl = environment.baseUrl+"/api/products";
+  productCategoryBaseUrl = environment.baseUrl+"/api/productCategories"
 
   constructor(private httpClient: HttpClient) { }
 

@@ -33,7 +33,7 @@ public class RepositoryRestConfig implements RepositoryRestConfigurer {
 
         exposeIds(config);
 
-        cors.addMapping("/api/**").allowedOrigins("http://localhost:4200");
+        cors.addMapping("/**").allowedOrigins("https://localhost:4200");
     }
 
     private static void readOnlyApiForEntity(RepositoryRestConfiguration config,Class thClass, HttpMethod[] unsupported) {

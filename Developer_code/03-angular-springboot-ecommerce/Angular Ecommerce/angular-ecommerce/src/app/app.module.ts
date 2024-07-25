@@ -1,6 +1,6 @@
 import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
@@ -24,6 +24,7 @@ import myAppConfig from './config/my-app-config';
 import { MembersComponent } from './components/members/members.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { OrderHistory } from './commons/order-history';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 const oktaConfig= myAppConfig.oidc;
 
@@ -86,3 +87,5 @@ const routes:Routes=[
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+// ,
+//   {provide :HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}
