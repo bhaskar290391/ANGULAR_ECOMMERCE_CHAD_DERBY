@@ -5,6 +5,7 @@ import { Country } from '../commons/country';
 import { State } from '../commons/state';
 import { Purchase } from '../commons/purchase';
 import { environment } from 'src/environments/environment.qa';
+import { PaymentInfo } from '../commons/payment-info';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,13 @@ export class CheckoutService {
     const purchaseUrl=environment.baseUrl+"/api/checkout/purchase";
 
     return this.httpClient.post<any>(purchaseUrl,purchase);
+  }
+
+
+
+  paymentIntent(paymentInfo: PaymentInfo) :Observable<any>{
+    const purchaseUrl=environment.baseUrl+"/api/checkout/payment";
+    return this.httpClient.post<any>(purchaseUrl,paymentInfo);
   }
 }
 
